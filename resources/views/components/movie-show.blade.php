@@ -38,7 +38,7 @@
           <div class="single-right-grids">
 
             <div class="col-md-4 single-right-grid-left">
-              <a href="single.html"><img src="{{ asset('storage/images/m1.jpg') }}" alt="" /></a>
+              <a href="single.html"><img src="/{{ $film->poster }}" alt="" /></a>
             </div>
             <div class="col-md-8 single-right-grid-right">
               <div class="song-info">
@@ -59,7 +59,7 @@
                       <tbody>
                         @foreach ($perans as $peran)
                         <tr>
-                          <td class="w3-list-info">{{ $peran->cast_id }}</td>
+                          <td class="w3-list-info">{{ $peran->cast()->first()->name }}</td>
                           <td class="w3-list-info">{{ $peran->actor }}</td>
                         </tr>
                         @endforeach

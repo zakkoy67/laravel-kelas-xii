@@ -22,7 +22,20 @@ class StoreFilmRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+                //
+                'title'     => 'required',
+                'sinopsis'  => 'required|min:20',
+                'year'      => 'required|integer',
+                'poster'    => 'required|image|mimes:png,jpg,jpeg,gif',
+                'genre_id' => 'required|exists:genres,id',
         ];
+    }
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'Validation error',
+            'data'      => $validator->errors(),
+        ]));    
     }
 }
